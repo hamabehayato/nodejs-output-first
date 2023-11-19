@@ -2,12 +2,12 @@ version: "3.9"
 services:
   backend:
     container_name: nestjs-output-first-crud
-    build: .
+    build: ./api-server
     tty: true
     depends_on:
       - db
     volumes:
-      - .:/backend
+      - ./api-server:/backend
       - /etc/localtime:/etc/localtime:ro # タイムゾーンを日本時刻に設定
     environment:
       TZ: Asia/Tokyo # タイムゾーンを日本時刻に設定
@@ -28,11 +28,10 @@ services:
     image: mysql:8.0
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     volumes:
-      - nestjs-output-first-db:/var/lib/mysql
+      - nestjs-output-first-data:/var/lib/mysql
       - ./mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
     ports:
       - 3306:3306
 
 volumes:
-  nestjs-output-first-db:
-  backend:
+  nestjs-output-first-data:
