@@ -4,7 +4,7 @@
 // npx typeorm-ts-node-commonjs migration:run -d type-orm/data-source.ts
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class CreateTodoTable implements MigrationInterface {
+export class CreateTodoTable1700394238770 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
       CREATE TABLE \`Todo\` (
@@ -19,7 +19,7 @@ export class CreateTodoTable implements MigrationInterface {
     await queryRunner.query(`
         INSERT INTO \`Todo\` (\`title\`, \`content\`) VALUES
           ('Todo 1', 'Content 1'),
-          ('Todo 2', 'Content 2'),
+          ('Todo 2', 'Content 2');
       `);
   }
 
