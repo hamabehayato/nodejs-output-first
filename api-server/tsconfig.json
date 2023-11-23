@@ -18,6 +18,6 @@
     // 前回のコンパイルの結果をキャッシュし、再コンパイル時に必要な部分のみ再コンパイルする
     "incremental": true,
     "strict": true,
-
+    "strictPropertyInitialization": false,
   }
 }

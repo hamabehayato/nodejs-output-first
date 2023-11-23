@@ -1,13 +1,13 @@
 // ファイル生成コマンド npx typeorm migration:create type-orm/migration/Todo
 
 // マイグレーション実行コマンド
-// npx typeorm-ts-node-commonjs migration:run -d type-orm/data-source.ts
+// npx typeorm-ts-node-commonjs migration:run -d src/data-source.ts
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class CreateTodoTable1700394238770 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
-      CREATE TABLE \`Todo\` (
+      CREATE TABLE \`todo\` (
         \`id\` INT NOT NULL AUTO_INCREMENT,
         \`title\` VARCHAR(191) NOT NULL,
         \`content\` VARCHAR(191) NOT NULL,
@@ -17,7 +17,7 @@ export class CreateTodoTable1700394238770 implements MigrationInterface {
 
     // 初期データ挿入クエリ
     await queryRunner.query(`
-        INSERT INTO \`Todo\` (\`title\`, \`content\`) VALUES
+        INSERT INTO \`todo\` (\`title\`, \`content\`) VALUES
           ('Todo 1', 'Content 1'),
           ('Todo 2', 'Content 2');
       `);
@@ -25,7 +25,7 @@ export class CreateTodoTable1700394238770 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
-      DROP TABLE \`Todo\`;
+      DROP TABLE \`todo\`;
     `);
   }
 }
