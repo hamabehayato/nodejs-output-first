@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../data-source';
 import { Todo } from './entity/Todo';
+import { CreateTodoDto } from './dto/create-todo.dto';
+import { UpdateTodoDto } from './dto/update-todo.dto';
 
 /**
  * Get all todos
@@ -27,7 +29,7 @@ export const getTodos = async (_req: Request, res: Response) => {
  */
 export const createTodo = async (req: Request, res: Response) => {
   try {
-    const { title, content } = req.body;
+    const { title, content } = req.body as CreateTodoDto;
 
     const newTodo = new Todo();
     newTodo.title = title;
@@ -36,7 +38,7 @@ export const createTodo = async (req: Request, res: Response) => {
     const todoRepository = AppDataSource.getRepository(Todo);
     await todoRepository.save(newTodo);
 
-    res.status(200).json('新規作成');
+    res.status(200).json('Create Todo');
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'error' });
@@ -50,7 +52,7 @@ export const createTodo = async (req: Request, res: Response) => {
  */
 export const updateTodo = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { title, content } = req.body;
+  const { title, content } = req.body as UpdateTodoDto;
 
   try {
     const todoRepository = AppDataSource.getRepository(Todo);
