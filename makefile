@@ -12,3 +12,6 @@ db-ssh:
 # ## 初期セットアップ
 db-migrate:
 	docker exec -it nodejs-output-first-crud sh -c "npm run migrate"
+
+db-setup:
+	make db-migrate && make db-seed
