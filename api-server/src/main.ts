@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import * as express from 'express';
 import { AppDataSource } from './data-source';
-import todoRoutes from './routes/todo.routes';
+import todoRoutes from './todo/todo.routes';
 
 const app = express();
 app.use(express.json());

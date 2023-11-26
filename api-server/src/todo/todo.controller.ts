@@ -23,6 +23,29 @@ export const getTodos = async (_req: Request, res: Response) => {
 };
 
 /**
+ * Get find todo
+ *
+ * @route GET /api/todo/:id
+ */
+export const findTodo = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  console.log(id);
+
+  try {
+    const todoRepository = AppDataSource.getRepository(Todo);
+    const todo = await todoRepository.findOneBy({ id: parseInt(id, 10) });
+
+    if (!todo) {
+      return res.status(404).json({ error: 'Todo not found' });
+    }
+
+    res.status(200).json(todo);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+/**
  * Create New todo
  *
  * @route POST /api/todo
