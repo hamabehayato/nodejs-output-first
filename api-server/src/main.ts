@@ -1,12 +1,7 @@
 import 'reflect-metadata';
 import * as express from 'express';
 import { AppDataSource } from './data-source';
-import {
-  getTodos,
-  createTodo,
-  updateTodo,
-  deleteTodo,
-} from './todo/todo.controller';
+import todoRoutes from './routes/todo.routes';
 
 const app = express();
 app.use(express.json());
@@ -23,12 +18,8 @@ AppDataSource.initialize()
   });
 
 /**
- * Todo API
+ * APIs
  *
- * @package src/todo
- * @route GET /api/todos
  */
-app.get('/api/todos', getTodos);
-app.post('/api/todo', createTodo);
-app.put('/api/todo/:id', updateTodo);
-app.delete('/api/todo/:id', deleteTodo);
+const apiPrefix = '/api';
+app.use(`${apiPrefix}/`, todoRoutes);

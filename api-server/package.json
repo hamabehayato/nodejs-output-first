@@ -4,7 +4,7 @@
   "description": "Node.js アウトプット用リポジトリ",
   "main": "src/main.ts",
   "scripts": {
-    "start": "node dist/src/main.js",
+    "start": "node dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "migrate": "npx typeorm-ts-node-commonjs migration:run -d src/data-source.ts"
